@@ -1,0 +1,109 @@
+.card_profile_wallet {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 24px;
+}
+
+.card_profile {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  gap: 10px;
+  background: var(--white);
+  border: 1px solid var(--gray06);
+  border-radius: 20px;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 8px;
+  width: 496.5px;
+}
+
+.profile_name {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 24px;
+}
+
+.profile_pic {
+  width: 60px;
+  height: 60px;
+}
+
+.profile_nick {
+  font-family: "Pretendard Variable";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 28px;
+  line-height: 33px;
+  color: var(--gray01);
+}
+
+.profile_text_setting_button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 24px;
+  align-self: stretch;
+}
+
+.profile_text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px 0px 0px 84px;
+  gap: 4px;
+  width: -webkit-fill-available;
+}
+
+.profile_text > div > div > p {
+  margin: 0;
+}
+
+.phone_number {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 8px;
+}
+
+.icon {
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+
+.p1_16 {
+  font-family: "Pretendard Variable";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  letter-spacing: -0.005em;
+  color: var(--gray03);
+}
+
+.setting_button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+  gap: 10px;
+  background: var(--purple01);
+  border-radius: 40px;
+}

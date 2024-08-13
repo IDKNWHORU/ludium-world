@@ -64,12 +64,10 @@ export default async function ProfilePage() {
         <div className="frame-76">
           <Avatar profile={profile} />
           <div className="frame-42">
-            {/* <div className="frame-44-2"> */}
             <div className="frame-34-6 background-white border-gray-06">
-              {/* <div className="frame-34-7 background-white border-gray-06"> */}
               <div className="frame-35-2">
-                <h1 className="h4-20 color-black">나의 미션</h1>
-                <Link className="frame-56-2 link" href="/profile/mission">
+                <h1 className="h4-20 color-black">나의 지원서</h1>
+                {/* <Link className="frame-56-2 link" href="/">
                   <p className="more color-gray-04">모두 보기</p>
                   <div className="arrow-right">
                     <div className="frame-78">
@@ -81,10 +79,11 @@ export default async function ProfilePage() {
                       />
                     </div>
                   </div>
-                </Link>
+                </Link> */}
               </div>
-              <Mission usrId={profile.id} />
+              <Application usrId={profile.id} />
             </div>
+            {/* <div className="frame-44-2"> */}
             {/* </div> */}
             <div className="frame-34-6 background-white border-gray-06">
               <div className="frame-35-2">
@@ -143,9 +142,10 @@ export default async function ProfilePage() {
             </div>
             {/* </div> */}
             <div className="frame-34-6 background-white border-gray-06">
+              {/* <div className="frame-34-7 background-white border-gray-06"> */}
               <div className="frame-35-2">
-                <h1 className="h4-20 color-black">나의 지원서</h1>
-                {/* <Link className="frame-56-2 link" href="/">
+                <h1 className="h4-20 color-black">나의 미션</h1>
+                <Link className="frame-56-2 link" href="/profile/mission">
                   <p className="more color-gray-04">모두 보기</p>
                   <div className="arrow-right">
                     <div className="frame-78">
@@ -157,9 +157,9 @@ export default async function ProfilePage() {
                       />
                     </div>
                   </div>
-                </Link> */}
+                </Link>
               </div>
-              <Application usrId={profile.id} />
+              <Mission usrId={profile.id} />
             </div>
           </div>
           <div className="frame-42">
