@@ -32,21 +32,24 @@ async function getCoinList() {
   const header = headers();
   const networkCode = process.env.NEXT_PUBLIC_NETWORK_CODE;
 
-  const getCoinListResponse = await fetchPayment(
-    `/api/coin-networks?network_code=${networkCode}`,
-    {
-      headers: {
-        cookie: cookieStore,
-        "x-user-right": header.get("x-user-right"),
-      },
+  try {
+    const getCoinListResponse = await fetchPayment(
+      `/api/coin-networks?network_code=${networkCode}`,
+      {
+        headers: {
+          cookie: cookieStore,
+          "x-user-right": header.get("x-user-right"),
+        },
+      }
+    );
+    if (!getCoinListResponse.ok) {
+      throw new Error("코인을 조회하는 중 에러가 발생했습니다.");
     }
-  );
 
-  if (!getCoinListResponse.ok) {
-    throw new Error("코인을 조회하는 중 에러가 발생했습니다.");
+    return getCoinListResponse.json();
+  } catch (error) {
+    return [];
   }
-
-  return getCoinListResponse.json();
 }
 
 async function EditModule({ announcementId, moduleId }) {

@@ -14,7 +14,6 @@ export async function claimMissionReward({
   userAddress,
   rewardClaimStatus,
 }) {
-  console.log("hello");
   if (
     [TRANSACTION_CODE.READY, TRANSACTION_CODE.TRANSACTION_APPROVED].includes(
       TRANSACTION_CODE[rewardClaimStatus]

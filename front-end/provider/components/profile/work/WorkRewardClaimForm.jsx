@@ -9,7 +9,12 @@ import { useNearWallet } from "@/hooks/wallet";
 import { useEffect, useState } from "react";
 import { useFormStatus } from "react-dom";
 
-function WorkReward({ work, workRewardClaimStatus, setWorkRewardClaimStatus }) {
+function WorkReward({
+  work,
+  workRewardClaimStatus,
+  setWorkRewardClaimStatus,
+  paymentError,
+}) {
   const { pending } = useFormStatus();
 
   useEffect(() => {
@@ -101,7 +106,8 @@ function WorkReward({ work, workRewardClaimStatus, setWorkRewardClaimStatus }) {
                 ].includes(TRANSACTION_CODE[workRewardClaimStatus]) ||
                 pending ||
                 work.rewardToken == null ||
-                work.rewardAmount == null
+                work.rewardAmount == null ||
+                paymentError
               }
             >
               <h4 className={`h4-20`}>
@@ -115,6 +121,8 @@ function WorkReward({ work, workRewardClaimStatus, setWorkRewardClaimStatus }) {
                   ? "지급 완료"
                   : pending
                   ? "요청중"
+                  : paymentError
+                  ? "요청 불가"
                   : "보상 요청"}
               </h4>
             </button>
@@ -125,7 +133,7 @@ function WorkReward({ work, workRewardClaimStatus, setWorkRewardClaimStatus }) {
   );
 }
 
-export default function WorkRewardClaimForm({ work }) {
+export default function WorkRewardClaimForm({ work, paymentError }) {
   const { accountId } = useNearWallet();
   const [workRewardClaimStatus, setWorkRewardClaimStatus] = useState(
     work.rewardClaimStatus
@@ -165,6 +173,7 @@ export default function WorkRewardClaimForm({ work }) {
         work={work}
         workRewardClaimStatus={workRewardClaimStatus}
         setWorkRewardClaimStatus={setWorkRewardClaimStatus}
+        paymentError={paymentError}
       />
     </form>
   );

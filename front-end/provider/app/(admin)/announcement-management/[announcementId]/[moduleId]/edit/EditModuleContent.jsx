@@ -77,18 +77,37 @@ export default function EditModuleContent({
         <label className="h5-18 color-gray-03" htmlFor="rewardToken">
           토큰
         </label>
-        <select
-          className="frame-102-3 background-white border-gray-05 p1-18 color-gray-04"
-          name="rewardToken"
-          id="rewardToken"
-          defaultValue={rewardToken}
-        >
-          {coinList.map(({ coin, id }) => (
-            <option key={id} value={id}>
-              {coin.name}
-            </option>
-          ))}
-        </select>
+        {coinList.length > 0 ? (
+          <select
+            className="frame-102-3 background-white border-gray-05 p1-18 color-gray-04"
+            name="rewardToken"
+            id="rewardToken"
+            defaultValue={rewardToken}
+          >
+            {coinList.map(({ coin, id }) => (
+              <option key={id} value={id}>
+                {coin.name}
+              </option>
+            ))}
+          </select>
+        ) : (
+          <>
+            <input
+              className="frame-102-3 background-white border-gray-05 p1-18 color-gray-04"
+              type="text"
+              name="rewardTokenError"
+              id="rewardToken"
+              placeholder="토큰 정보를 불러오는 중 에러가 발생했습니다."
+              disabled={true}
+            />
+            <input
+              type="hidden"
+              name="rewardToken"
+              id="rewardToken"
+              defaultValue={rewardToken}
+            />
+          </>
+        )}
       </div>
       <div className="input-2">
         <label className="h5-18 color-gray-03" htmlFor="rewardAmount">

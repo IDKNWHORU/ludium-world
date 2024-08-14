@@ -13,6 +13,7 @@ const MissionReward = ({
   mission,
   missionRewardClaimStatus,
   setMissionRewardClaimStatus,
+  paymentError,
 }) => {
   const { pending } = useFormStatus();
 
@@ -110,7 +111,8 @@ const MissionReward = ({
                   TRANSACTION_CODE.READY,
                   TRANSACTION_CODE.TRANSACTION_APPROVED,
                 ].includes(TRANSACTION_CODE[missionRewardClaimStatus]) ||
-                pending
+                pending ||
+                paymentError
               }
             >
               <h4 className={`h4-20`}>
@@ -122,6 +124,8 @@ const MissionReward = ({
                   ? "지급 완료"
                   : pending
                   ? "요청중"
+                  : paymentError
+                  ? "요청 불가"
                   : "보상 요청"}
               </h4>
             </button>
@@ -132,7 +136,7 @@ const MissionReward = ({
   );
 };
 
-export default function MissionRewardClaimForm({ mission }) {
+export default function MissionRewardClaimForm({ mission, paymentError }) {
   const { accountId } = useNearWallet();
   const [missionRewardClaimStatus, setMissionRewardClaimStatus] = useState(
     mission.rewardClaimStatus
@@ -181,6 +185,7 @@ export default function MissionRewardClaimForm({ mission }) {
         mission={mission}
         missionRewardClaimStatus={missionRewardClaimStatus}
         setMissionRewardClaimStatus={setMissionRewardClaimStatus}
+        paymentError={paymentError}
       />
     </form>
   );

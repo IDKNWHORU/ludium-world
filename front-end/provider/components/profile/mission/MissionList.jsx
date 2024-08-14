@@ -22,21 +22,25 @@ async function getCoinList() {
   const header = headers();
   const networkCode = process.env.NEXT_PUBLIC_NETWORK_CODE;
 
-  const getCoinListResponse = await fetchPayment(
-    `/api/coin-networks?network_code=${networkCode}`,
-    {
-      headers: {
-        cookie: cookieStore,
-        "x-user-right": header.get("x-user-right"),
-      },
+  try {
+    const getCoinListResponse = await fetchPayment(
+      `/api/coin-networks?network_code=${networkCode}`,
+      {
+        headers: {
+          cookie: cookieStore,
+          "x-user-right": header.get("x-user-right"),
+        },
+      }
+    );
+
+    if (!getCoinListResponse.ok) {
+      throw new Error("코인을 조회하는 중 에러가 발생했습니다.");
     }
-  );
 
-  if (!getCoinListResponse.ok) {
-    throw new Error("코인을 조회하는 중 에러가 발생했습니다.");
+    return getCoinListResponse.json();
+  } catch (error) {
+    return [];
   }
-
-  return getCoinListResponse.json();
 }
 
 export default async function MissionList({ usrId }) {
@@ -105,6 +109,8 @@ export default async function MissionList({ usrId }) {
                     <h4 className={`h4-20`}>
                       {mission.rewardToken == null
                         ? "없음"
+                        : coins.length === 0
+                        ? "조회 에러"
                         : coins.find(({ id }) => id === mission.rewardToken)
                             .coin.symbol}
                     </h4>
@@ -134,7 +140,10 @@ export default async function MissionList({ usrId }) {
                     </h4>
                   </div>
                 </div>
-                <MissionRewardClaimForm mission={mission} />
+                <MissionRewardClaimForm
+                  mission={mission}
+                  paymentError={coins.length === 0}
+                />
               </div>
             </Fragment>
           ))}

@@ -7,17 +7,21 @@ async function getRewardList() {
   const cookieStore = cookies();
   const header = headers();
 
-  const getRewardListResponse = await fetchPayment("/api/me/reward-claims", {
-    headers: {
-      cookie: cookieStore,
-      "x-user-right": header.get("x-user-right"),
-    },
-  });
+  try {
+    const getRewardListResponse = await fetchPayment("/api/me/reward-claims", {
+      headers: {
+        cookie: cookieStore,
+        "x-user-right": header.get("x-user-right"),
+      },
+    });
 
-  if (!getRewardListResponse.ok)
-    throw new Error("나의 보상을 불러오는 중 에러가 발생했습니다.");
+    if (!getRewardListResponse.ok)
+      throw new Error("나의 보상을 불러오는 중 에러가 발생했습니다.");
 
-  return getRewardListResponse.json();
+    return getRewardListResponse.json();
+  } catch (error) {
+    return [];
+  }
 }
 
 async function getMission(missionId) {
